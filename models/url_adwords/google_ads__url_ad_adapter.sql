@@ -52,7 +52,7 @@ with base as (
         {% endfor %}
     from base
     left join subbase on cast(base.campaign_id as int64)  = cast(subbase.campaign_id as int64) and
-        cast(base.ad_group_id as int64) = cast(subbase.ad_group_id as int64) and cast(base.date_day as date) = cast(subbase.date_day as date)
+        cast(base.ad_group_id as int64) = cast(subbase.ad_group_id as int64) and cast(base.date_day as string) = cast(subbase.date_day as string)
     {{ dbt_utils.group_by(15) }}
 
 )
