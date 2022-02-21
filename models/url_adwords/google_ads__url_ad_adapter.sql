@@ -51,7 +51,8 @@ with base as (
         , sum({{ metric }}) as {{ metric }}
         {% endfor %}
     from base
-    left join subbase on base.campaign_id = subbase.campaign_id and base.ad_group_id = subbase.ad_group_id and base.date_day = subbase.date_day
+    left join subbase on cast(base.campaign_id as int64)  = cast(subbase.campaign_id as int64) and
+        cast(base.ad_group_id as int64) = cast(subbase.ad_group_id as int64) and cast(base.date_day as date) = cast(subbase.date_day as date)
     {{ dbt_utils.group_by(15) }}
 
 )
