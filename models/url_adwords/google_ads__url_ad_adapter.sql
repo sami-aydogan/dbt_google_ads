@@ -24,23 +24,23 @@ with base as (
         subbase.url_host,
         subbase.url_path,
         CASE
-            WHEN LOWER(subbase.utm_source) like '%' + LOWER(coalesce(base.criteria_type, '')) + '%' then REPLACE(subbase.utm_source,'{'+LOWER(coalesce(base.criteria_type, ''))+'}', base.criteria)
+            WHEN LOWER(subbase.utm_source) like CONCAT('%', LOWER(coalesce(base.criteria_type, '')) ,'%') then REPLACE(subbase.utm_source,CONCAT('{', LOWER(coalesce(base.criteria_type, '')) ,'}'), base.criteria)
             else subbase.utm_source
         end AS utm_source,
         CASE
-            WHEN LOWER(subbase.utm_medium) like '%' + LOWER(coalesce(base.criteria_type, '')) + '%' then REPLACE(subbase.utm_medium,'{'+LOWER(coalesce(base.criteria_type, ''))+'}', base.criteria)
+            WHEN LOWER(subbase.utm_medium) like CONCAT('%', LOWER(coalesce(base.criteria_type, '')) ,'%') then REPLACE(subbase.utm_medium,CONCAT('{', LOWER(coalesce(base.criteria_type, '')) ,'}'), base.criteria)
             else subbase.utm_medium
         end AS utm_medium,
         CASE
-            WHEN LOWER(subbase.utm_campaign) like '%' + LOWER(coalesce(base.criteria_type, '')) + '%' then REPLACE(subbase.utm_campaign,'{'+LOWER(coalesce(base.criteria_type, ''))+'}', base.criteria)
+            WHEN LOWER(subbase.utm_campaign) like CONCAT('%', LOWER(coalesce(base.criteria_type, '')) ,'%') then REPLACE(subbase.utm_campaign,CONCAT('{', LOWER(coalesce(base.criteria_type, '')) ,'}'), base.criteria)
             else subbase.utm_campaign
         end AS utm_campaign,
         CASE
-            WHEN LOWER(subbase.utm_content) like '%' + LOWER(coalesce(base.criteria_type, '')) + '%' then REPLACE(subbase.utm_content,'{'+LOWER(coalesce(base.criteria_type, ''))+'}', base.criteria)
+            WHEN LOWER(subbase.utm_content) like CONCAT('%', LOWER(coalesce(base.criteria_type, '')) ,'%') then REPLACE(subbase.utm_content,CONCAT('{', LOWER(coalesce(base.criteria_type, '')) ,'}'), base.criteria)
             else subbase.utm_content
         end AS utm_content,
         CASE
-            WHEN LOWER(subbase.utm_term) like '%' + LOWER(coalesce(base.criteria_type, '')) + '%' then REPLACE(subbase.utm_term,'{'+LOWER(coalesce(base.criteria_type, ''))+'}', base.criteria)
+            WHEN LOWER(subbase.utm_term) like CONCAT('%', LOWER(coalesce(base.criteria_type, '')) ,'%') then REPLACE(subbase.utm_term,CONCAT('{', LOWER(coalesce(base.criteria_type, '')) ,'}'), base.criteria)
             else subbase.utm_term
         end AS utm_term,
         sum(base.spend) as spend,
